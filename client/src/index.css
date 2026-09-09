@@ -1,0 +1,747 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #0b0f19;
+    color: #f1f5f9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Box breathing animations */
+@keyframes breathePulse {
+  0% { transform: scale(0.85); opacity: 0.85; }
+  25% { transform: scale(1.15); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 1; }
+  75% { transform: scale(0.85); opacity: 0.85; }
+  100% { transform: scale(0.85); opacity: 0.85; }
+}
+
+.animate-breathe {
+  animation: breathePulse 16s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Dashboard Glass System & Ambient Theme Utilities
+   ========================================================================== */
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-subtle {
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.2s ease;
+}
+
+.dark .glass-panel-subtle {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -6px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-panel-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -6px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Shimmer & Visual Glow Effects */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.08); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.glow-indigo {
+  box-shadow: 0 0 35px -5px rgba(99, 102, 241, 0.35);
+}
+
+.glow-teal {
+  box-shadow: 0 0 35px -5px rgba(20, 184, 166, 0.35);
+}
+
+.glow-rose {
+  box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.35);
+}
+
+.glow-amber {
+  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.35);
+}
+
+.glow-purple {
+  box-shadow: 0 0 35px -5px rgba(168, 85, 247, 0.35);
+}
+
+.glass-border-glow {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 25px -4px rgba(20, 184, 166, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass-border-glow {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 30px -4px rgba(99, 102, 241, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+}
+
+.gradient-text-vibrant {
+  background: linear-gradient(135deg, #0f172a 0%, #4338ca 45%, #0f766e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .gradient-text-vibrant {
+  background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 45%, #5eead4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-aurora {
+  background: linear-gradient(135deg, #2dd4bf 0%, #818cf8 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes shimmerEffect {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: translateX(-100%);
+  animation: shimmerEffect 4s infinite;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Terranova Liquid Glass & Hero Landing Styles
+   ========================================================================== */
+
+.terranova-hero {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  color: #000;
+  pointer-events: none;
+  font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.terranova-bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.terranova-glass-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.terranova-icon {
+  flex: none;
+}
+
+/* Vertical rules (>=768px only) */
+.terranova-rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+.terranova-rule--left  { left: 1.25rem; }
+.terranova-rule--right { right: 1.25rem; }
+.terranova-rule__seg {
+  width: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.terranova-rule__seg--end { height: 15%; }
+.terranova-rule__seg--mid { flex: 1 1 0%; }
+.terranova-rule__plus {
+  font-size: 0.75rem;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.4);
+  padding: 0.25rem 0;
+}
+@media (min-width: 768px) {
+  .terranova-rule { display: flex; }
+}
+
+/* Navbar */
+.terranova-nav {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+.terranova-nav__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: #000;
+  background: none;
+  border: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity 300ms;
+}
+.terranova-nav__item:hover { opacity: 0.6; }
+.terranova-nav__label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.025em;
+}
+.terranova-nav__label--menu { display: none; }
+.terranova-nav__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #000;
+}
+
+@media (min-width: 640px) {
+  .terranova-nav { padding: 1.25rem 1.5rem; }
+  .terranova-nav__label--menu { display: inline; }
+}
+@media (min-width: 768px) {
+  .terranova-nav { padding: 1.5rem 3rem; }
+}
+
+/* Bottom row layout */
+.terranova-hero-bottom {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1.25rem 1.5rem;
+}
+@media (min-width: 640px) {
+  .terranova-hero-bottom { padding: 0 1.5rem 2rem; }
+}
+@media (min-width: 768px) {
+  .terranova-hero-bottom {
+    flex: 1;
+    margin-top: 0;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem 3rem 3rem;
+  }
+  .terranova-lede { align-self: flex-start; }
+  .terranova-card { align-self: flex-end; }
+}
+
+/* Left column — copy */
+.terranova-lede { max-width: 26rem; pointer-events: auto; }
+.terranova-lede__title {
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #000;
+}
+.terranova-lede__body {
+  margin-top: 0.75rem;
+  max-width: 320px;
+  font-size: 0.75rem;
+  line-height: 1.625;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+@media (min-width: 640px) {
+  .terranova-lede__title { font-size: 1.6rem; }
+  .terranova-lede__body { font-size: 0.875rem; }
+}
+@media (min-width: 768px) {
+  .terranova-lede__title { font-size: 2rem; }
+  .terranova-lede__body { margin-top: 1rem; }
+}
+@media (min-width: 1024px) {
+  .terranova-lede__title { font-size: 2.35rem; }
+}
+
+/* Chamfered button */
+.terranova-chamfer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 220px;
+  height: 44px;
+  margin-top: 1.5rem;
+  padding: 0 1.25rem;
+  color: #000;
+  text-decoration: none;
+  pointer-events: auto;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  transition: opacity 300ms;
+}
+.terranova-chamfer:hover { opacity: 0.7; }
+
+.terranova-chamfer__glass {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+.terranova-chamfer__outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.terranova-chamfer__label {
+  position: relative;
+  font-size: 0.75rem;
+  letter-spacing: 0.025em;
+  font-weight: 500;
+}
+.terranova-chamfer .terranova-icon {
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .terranova-chamfer { width: 260px; height: 48px; padding: 0 1.5rem; }
+  .terranova-chamfer__label { font-size: 0.875rem; }
+  .terranova-chamfer__glass {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: transparent;
+  }
+}
+@media (min-width: 768px) {
+  .terranova-chamfer { margin-top: 2rem; }
+}
+
+/* Right column — the liquid-glass card */
+.terranova-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 380px;
+  max-width: 100%;
+  min-height: 480px;
+  padding: 1.75rem;
+  border-radius: 48px;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  pointer-events: auto;
+  animation: fade-slide-up-card 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-slide-up-card {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#dup-video-container-client {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+#dup-image-client {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: url(#liquid-glass-refraction-client);
+}
+
+.terranova-card__frost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 48px;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.4),
+              inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+  transition: background 400ms;
+}
+.terranova-card:hover .terranova-card__frost {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.terranova-card__head, .terranova-card__body, .terranova-card__wave {
+  position: relative;
+  z-index: 2;
+}
+
+.terranova-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.terranova-card__title {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: #000;
+}
+.terranova-card__index {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+}
+.terranova-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: 0.875rem;
+}
+.terranova-finding__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #000;
+}
+.terranova-finding__text {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.625;
+  color: rgba(0, 0, 0, 0.55);
+}
+.terranova-card__wave {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+/* Slide-in menu overlay */
+.terranova-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility 0s linear 500ms;
+}
+.terranova-menu.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.terranova-menu__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 500ms;
+}
+.terranova-menu.is-open .terranova-menu__backdrop { opacity: 1; }
+
+.terranova-menu__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem 2rem;
+  background: #f5f4f0;
+  transform: translateX(-100%);
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.terranova-menu.is-open .terranova-menu__panel {
+  transform: translateX(0);
+}
+@media (min-width: 640px) {
+  .terranova-menu__panel {
+    width: 380px;
+    padding: 1.5rem 2.5rem;
+  }
+}
+
+.terranova-menu__close {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: flex-start;
+  margin-bottom: 2.5rem;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 0.875rem;
+  color: #000;
+  cursor: pointer;
+  transition: opacity 300ms;
+}
+.terranova-menu__close:hover { opacity: 0.6; }
+
+.terranova-menu__nav {
+  display: flex;
+  flex-direction: column;
+}
+.terranova-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms, transform 500ms;
+}
+.terranova-menu__linkText {
+  font-size: 1.35rem;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  transition: transform 300ms;
+}
+.terranova-menu__link:hover .terranova-menu__linkText {
+  transform: translateX(8px);
+}
+.terranova-menu__arrow {
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 300ms, transform 300ms;
+}
+.terranova-menu__link:hover .terranova-menu__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (min-width: 640px) {
+  .terranova-menu__linkText { font-size: 1.6rem; }
+}
+
+.terranova-menu.is-open .terranova-menu__link {
+  opacity: 1;
+  transform: translateY(0);
+}
+.terranova-menu.is-open .terranova-menu__link:nth-child(1) { transition-delay: 150ms; }
+.terranova-menu.is-open .terranova-menu__link:nth-child(2) { transition-delay: 225ms; }
+.terranova-menu.is-open .terranova-menu__link:nth-child(3) { transition-delay: 300ms; }
+.terranova-menu.is-open .terranova-menu__link:nth-child(4) { transition-delay: 375ms; }
+.terranova-menu.is-open .terranova-menu__link:nth-child(5) { transition-delay: 450ms; }
+
+.terranova-menu__foot {
+  margin-top: auto;
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms, transform 500ms;
+}
+.terranova-menu.is-open .terranova-menu__foot {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 600ms;
+}
+.terranova-menu__footLabel {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: rgba(0, 0, 0, 0.4);
+}
+.terranova-menu__mail {
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  transition: color 300ms;
+}
+.terranova-menu__mail:hover { color: #000; }
+
+/* Dark Mode Overrides for Terranova Components */
+.dark .terranova-hero {
+  color: #fff;
+}
+.dark .terranova-rule__seg {
+  background: rgba(255, 255, 255, 0.2);
+}
+.dark .terranova-rule__plus {
+  color: rgba(255, 255, 255, 0.4);
+}
+.dark .terranova-nav__item {
+  color: #fff;
+}
+.dark .terranova-nav__dot {
+  background: #fff;
+}
+.dark .terranova-lede__title {
+  color: #fff;
+}
+.dark .terranova-lede__body {
+  color: rgba(255, 255, 255, 0.7);
+}
+.dark .terranova-chamfer {
+  color: #fff;
+}
+.dark .terranova-chamfer__glass {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.dark .terranova-card {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.dark .terranova-card__frost {
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.15),
+              inset 0 -1px 2px rgba(0, 0, 0, 0.6);
+}
+.dark .terranova-card:hover .terranova-card__frost {
+  background: rgba(0, 0, 0, 0.4);
+}
+.dark .terranova-card__head {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+.dark .terranova-card__title {
+  color: #fff;
+}
+.dark .terranova-card__index {
+  color: rgba(255, 255, 255, 0.45);
+}
+.dark .terranova-menu__panel {
+  background: #0f141f;
+  color: #fff;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark .terranova-menu__close {
+  color: #fff;
+}
+.dark .terranova-menu__link {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.dark .terranova-menu__foot {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+.dark .terranova-menu__footLabel {
+  color: rgba(255, 255, 255, 0.4);
+}
+.dark .terranova-menu__mail {
+  color: rgba(255, 255, 255, 0.7);
+}
+.dark .terranova-menu__mail:hover {
+  color: #fff;
+}
